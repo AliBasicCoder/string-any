@@ -31,7 +31,7 @@ toStr(
 // =>   },
 // =>   func: () => 'hello'
 // => }'
-}
+
 ```
 
 ## LICENSE

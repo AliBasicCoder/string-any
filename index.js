@@ -12,13 +12,18 @@ function addTab(str) {
   const arr = res.split('\n');
 
   const callback = (item, i) => {
-    if (!(i === (arr.length - 1) || i === 0)) {
-      item = '   ' + item;
+    const last = (arr.length - 1);
+
+    if (i === 0) {
+      return item;
     }
-    if (i === (arr.length - 1)) {
+
+    if (i === last) {
       item = `  ${item}`;
+      return item;
     }
-    return item;
+
+    return `   ${item}`;
   }
 
   return arr.map(callback).join('\n');

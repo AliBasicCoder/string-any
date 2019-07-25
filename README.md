@@ -23,5 +23,13 @@ toStr(
     func: () => 'hello'
   }
 );
-
+// => '{
+// =>   name: "name",
+// =>   id: 32918,
+// =>   randomThing: {
+// =>      dwq: "hello"
+// =>   },
+// =>   func: () => 'hello'
+// => }'
+}
 ```

@@ -1,1 +1,84 @@
-module.exports=function(t,r){"use strict";var e={};function __webpack_require__(r){if(e[r]){return e[r].exports}var n=e[r]={i:r,l:false,exports:{}};t[r].call(n.exports,n,n.exports,__webpack_require__);n.l=true;return n.exports}function startup(){return __webpack_require__(367)}return startup()}({367:function(t,r){const e=t=>/[^\w]/.test(t)||/\d/.test(t)?`"${t}"`:t;function addTab(t){let r=t.replace(/\r\n/g,"\n");r=r.replace(/\r/g,"\n");const e=r.split("\n");const n=(t,r)=>{const n=e.length-1;if(r===0){return t}if(r===n){t=`  ${t}`;return t}return`   ${t}`};return e.map(n).join("\n")}function toStr(t){if(t===null){return"null"}if(Array.isArray(t)){let r="[";t.forEach((e,n)=>{const o=n===t.length-1?"":",";r+=`${toStr(e)}${o}`});r+="]";return r}if(typeof t==="number"||typeof t==="function"){return t.toString()}if(typeof t==="object"){let r="{";const n=Object.keys(t);n.forEach((o,u)=>{const c=t[o];let i=toStr(c);if(typeof c==="object"){i=addTab(toStr(c))}const s=u===n.length-1?"\n":",";r+=`\n  ${e(o)}: ${i}${s}`});r+="}";return r}if(typeof t==="string"){t=t.replace(/"/g,'\\"');return`"${t}"`}return String(t)}r.toStr=toStr}});
+
+const fixKey = (key) =>
+  /[^\w]/.test(key) || /\d/.test(key) ? `"${key}"` : key;
+// END
+
+function addTab(str) {
+  let res = str.replace(/\r\n/g, '\n');
+  res = res.replace(/\r/g, '\n');
+  const arr = res.split('\n');
+
+  const callback = (item, i) => {
+    const last = (arr.length - 1);
+
+    if (i === 0) {
+      return item;
+    }
+
+    if (i === last) {
+      item = `  ${item}`;
+      return item;
+    }
+
+    return `   ${item}`;
+  }
+
+  return arr.map(callback).join('\n');
+}
+
+function toStr(thing) {
+
+  if (thing === null) {
+    return 'null';
+  }
+
+  if (Array.isArray(thing)) {
+    let toReturn = '[';
+
+    thing.forEach(
+      (value, i) => {
+        const comma = i === (thing.length - 1) ? '' : ',';
+        toReturn += `${toStr(value)}${comma}`;
+      }
+    );
+
+    toReturn += ']';
+    return toReturn;
+  }
+
+  if (typeof thing === 'number' || typeof thing === 'function') {
+    return thing.toString();
+  }
+
+  if (typeof thing === 'object') {
+    let toReturn = '{';
+    const keys = Object.keys(thing);
+
+    keys.forEach(
+      (key, i) => {
+        const elm = thing[key];
+        let val = toStr(elm);
+
+        if (typeof elm === 'object') {
+          val = addTab(toStr(elm));
+        }
+
+        const comma = i === (keys.length - 1) ? '\n' : ',';
+
+        toReturn += `\n  ${fixKey(key)}: ${val}${comma}`;
+      }
+    );
+
+    toReturn += '}';
+    return toReturn;
+  }
+
+  if (typeof thing === 'string') {
+    thing = thing.replace(/"/g, '\\"');
+    return `"${thing}"`;
+  }
+
+  return String(thing);
+}
+
+exports.toStr = toStr;

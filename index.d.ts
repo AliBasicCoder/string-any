@@ -4,5 +4,5 @@ declare module "to-string" {
    * @param thing the thing that you want to convert to a
    * string
    */
-  const toStr = (thing: number | string | {} | Function | []): string;
+  function toStr(thing: number | string | {} | Function | []): string
 }

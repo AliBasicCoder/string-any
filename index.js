@@ -1,10 +1,7 @@
 
-function fixKey(key) {
-  if (/[^\w]/.test(key) || /\d/.test(key)) {
-    return `"${key}"`;
-  }
-  return key;
-}
+const fixKey = (key) =>
+  /[^\w]/.test(key) || /\d/.test(key) ? `"${key}"` : key;
+// END
 
 function addTab(str) {
   let res = str.replace(/\r\n/g, '\n');

@@ -13,7 +13,7 @@ function fixKey(key) {
  * @returns {string}
  * @param {string} str 
  */
-function AddTab(str) {
+function addTab(str) {
   let res = str.replace(/\r\n/g, '\n');
   res = res.replace(/\r/g, '\n');
   const res2 = res.split('\n');
@@ -35,7 +35,7 @@ function toStr(thing) {
   }
 
   if (Array.isArray(thing)) {
-    let toReturn = '['
+    let toReturn = '[';
 
     for (let i = 0; i < thing.length; i++) {
       toReturn += `${toStr(thing[i])}${i === (thing.length - 1) ? '' : ','}`;
@@ -62,7 +62,7 @@ function toStr(thing) {
       let val = toStr(thing[key]);
 
       if (typeof thing[key] === 'object') {
-        val = AddTab(toStr(thing[key]));
+        val = addTab(toStr(thing[key]));
       }
 
       toReturn += `\n  ${fixKey(key)}: ${val}${i === (keys.length - 1) ? '\n' : ','}`;
@@ -78,6 +78,6 @@ function toStr(thing) {
   }
 
   return String(thing);
-};
+}
 
 exports.toStr = toStr;

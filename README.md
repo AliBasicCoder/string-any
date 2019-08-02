@@ -16,30 +16,37 @@ const { toStr } = require('string-any');
 // objects
 toStr(
   {
-    name: 'name',
+    name: "name",
     id: 32918,
     randomThing: {
-      dwq: 'hello'
+      dwq: "hello"
     },
-    func: () => 'hello'
+    func: () => "hello"
   }
 );
-// => '{
+// => "{
 // =>   name: "name",
 // =>   id: 32918,
 // =>   randomThing: {
 // =>      dwq: "hello"
 // =>   },
-// =>   func: () => 'hello'
-// => }'
+// =>   func: () => "hello"
+// => }"
 
 // functions
-
-toStr(() => {}) // => '() => {}'
+toStr(() => {}) // => "() => {}"
 
 // numbers
+toStr(10) // => "10"
 
-toStr(10) // => '10'
+// Strings
+toStr("hello") // => '"hello"'
+
+// String Objects
+toStr(new String("hello")) // => "hello"
+
+// Arrays
+toStr([1,2,3]) // => "[1, 2, 3]"
 
 ```
 

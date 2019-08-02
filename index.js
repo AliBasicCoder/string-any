@@ -32,12 +32,22 @@ function toStr(thing) {
     return 'null';
   }
 
+  if (thing instanceof String) {
+    let i = 0;
+    let str = '';
+    while (thing[String(i)]) {
+      str += thing[String(i)];
+      i++;
+    }
+    return str;
+  }
+
   if (Array.isArray(thing)) {
     let toReturn = '[';
 
     thing.forEach(
       (value, i) => {
-        const comma = i === (thing.length - 1) ? '' : ',';
+        const comma = i === (thing.length - 1) ? '' : ', ';
         toReturn += `${toStr(value)}${comma}`;
       }
     );

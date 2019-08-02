@@ -13,6 +13,7 @@ is a package to convert any object to a string and not ```[object Object]```
 ``` js
 const { toStr } = require('string-any');
 
+// objects
 toStr(
   {
     name: 'name',
@@ -31,6 +32,14 @@ toStr(
 // =>   },
 // =>   func: () => 'hello'
 // => }'
+
+// functions
+
+toStr(() => {}) // => '() => {}'
+
+// numbers
+
+toStr(10) // => '10'
 
 ```
 
